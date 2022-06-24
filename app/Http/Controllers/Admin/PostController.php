@@ -19,7 +19,7 @@ class PostController extends Controller
         "content" =>"required",
         "published" =>"sometimes|accepted",
         "category_id" =>"nullable|exists:categories,id",
-        "tags" =>"nullable|exist:tags,id",
+        "tags" =>"nullable|exists:tags,id",
         
         // "image" =>"nullable|image|mimes:....",
 

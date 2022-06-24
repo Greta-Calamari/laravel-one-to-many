@@ -33,6 +33,18 @@
                 <div class="collapse navbar-collapse" id="navbarSupportedContent">
                     <!-- Left Side Of Navbar -->
                     <ul class="navbar-nav mr-auto">
+                        {{-- inserire qui miglioria  --}}
+                        @auth
+                        <li class="nav-item">
+                            <a href="{{route('admin.home')}}" class="nav-link" {{Route::currentRouteName() == 'admin.home' ? 'active' : ''}} >Dashboard</a>
+
+                        </li>
+                        <li class="nav-item">
+                            <a href="{{route('admin.posts.index')}}" class="nav-link" {{Route::currentRouteName() == 'admin.posts.index' ? 'active' : ''}} >Posts</a>
+
+                        </li>
+                            
+                        @endauth
 
                     </ul>
 
@@ -60,6 +72,7 @@
                                                      document.getElementById('logout-form').submit();">
                                         {{ __('Logout') }}
                                     </a>
+                                    <a href=""></a>
 
                                     <form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none">
                                         @csrf
