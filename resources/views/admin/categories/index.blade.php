@@ -3,7 +3,7 @@
 
 @section('content')
 
-<a href="{{route('admin.categories.create')}}" class="btn btn-primary">Crea nuovo post</a>
+<a href="{{route('admin.categories.create')}}" class="btn btn-primary">Crea nuova categoria</a>
 <table class="table">
     <thead>
       <tr>
@@ -20,9 +20,9 @@
       
       <tr>
         
-        <td> <a href="{{route('admin.categories.show',$category->id)}}">{{$post->id}}</a> </td>
-        <td> <a href="{{route('admin.categories.show',$category->id)}}">{{$post->title}}</a> </td>
-        <td>{{$post->created_at}}</td>
+        <td> <a href="{{route('admin.categories.show',$category->id)}}">{{$category->id}}</a> </td>
+        <td> <a href="{{route('admin.categories.show',$category->id)}}">{{$category->title}}</a> </td>
+        <td>{{$category->created_at}}</td>
         <td><a href="{{route('admin.categories.edit',$category->id)}}" class="btn btn-primary">Modifica</a></td>
         <td><a href="{{route('admin.categories.show',$category->id)}}" class="btn btn-primary">Visualizza</a></td>
         <td>
