@@ -17,6 +17,14 @@
         <h5>Pubblicato: {{$post->published}}</h5>
 
         <h5>{{$post->published ? 'Published' : 'Unpublished'}}</h5>
+
+        <ul>
+                @foreach ($post->tags as $item)
+                   
+                   <li>{{$item->name}}</li>
+                    
+                @endforeach
+        </ul>
 @endsection
 
 

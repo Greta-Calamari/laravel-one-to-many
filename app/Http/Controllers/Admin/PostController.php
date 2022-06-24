@@ -4,9 +4,11 @@ namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
-use illuminate\Support\Str;
+use Illuminate\Support\Str;
 use App\Post;
 use App\Category;
+use App\Tag;
+
 
 
 
@@ -16,7 +18,7 @@ class PostController extends Controller
         "title" =>"required|string|max:100",
         "content" =>"required",
         "published" =>"sometimes|accepted",
-        "category_id" =>"nullable|exist:categories,id",
+        "category_id" =>"nullable|exists:categories,id",
         // "image" =>"nullable|image|mimes:....",
         // "tags" =>"nullable|exist:categories,id",
 
@@ -44,7 +46,8 @@ class PostController extends Controller
     public function create()
     {
         $categories = Category::all();
-        return view('admin.posts.create',compact('categories'));
+        $tags = Tag::all();
+        return view('admin.posts.create',compact('categories','tags'));
         
     }
 
@@ -66,8 +69,11 @@ class PostController extends Controller
         $newPost->published = isset($data['published']);
         $newPost->category_id=$data['category_id'];
         // $slug = Str::of($data['title'])->slug("-");
-        $newPost->slug = $this->getSlug($post->title);
+        $newPost->slug = $this->getSlug($newPost->title);
         $newPost->save();
+        if(isset($data['tags'])){
+            $newPost->tags()->sync($data['tags']);
+        }
         return redirect()->route('admin.posts.show', $newPost->id);
 
 
